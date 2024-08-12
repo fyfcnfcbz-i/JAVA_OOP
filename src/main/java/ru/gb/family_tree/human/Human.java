@@ -27,11 +27,10 @@ public class Human {
         this.mother = mother;
         children = new ArrayList<>();
     }
-
     public Human(String name, Gender gender, LocalDate birthDate) {
         this(name, gender, birthDate, null, null, null);
     }
-    public Human(String name, Gender gender, LocalDate birthDate, Human father, Human mother) {
+    public Human (String name, Gender gender, LocalDate birthDate, Human father, Human mother) {
         this(name, gender, birthDate, null, father, mother);
     }
 
@@ -113,7 +112,7 @@ public class Human {
             list.add(father);
         }
         if (mother != null) {
-            list.add(father);
+            list.add(mother);
         }
         return list;
     }
@@ -171,7 +170,7 @@ public class Human {
         if (mother != null) {
             res += mother.getName();
         }else {
-            res += "неизвестна ";
+            res += "неизвестна";
         }
         return res;
     }
@@ -181,7 +180,7 @@ public class Human {
         if (father != null) {
             res += father.getName();
         }else {
-            res += "неизвестен ";
+            res += "неизвестен";
         }
         return res;
     }
@@ -190,7 +189,7 @@ public class Human {
         res.append("дети: ");
         if (children.size() != 0) {
             res.append((children.get(0).getName()));
-            for (int i = 0; i < children.size(); i++) {
+            for (int i = 1; i < children.size(); i++) {
                 res.append(", ");
                 res.append(children.get(i).getName());
             }

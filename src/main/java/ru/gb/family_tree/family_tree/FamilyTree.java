@@ -1,7 +1,6 @@
 package ru.gb.family_tree.family_tree;
 
 import ru.gb.family_tree.human.Human;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class FamilyTree {
         this.humanList = humanList;
     }
 
-    public boolean add(Human human){
+    public boolean add (Human human){
         if (human == null) {
             return false;
         }
@@ -37,7 +36,6 @@ public class FamilyTree {
             parent.addChild(human);
         }
     }
-
     private void addToChildren(Human human){
         for (Human child: human.getChildren()){
             child.addParent(human);
@@ -85,9 +83,32 @@ public class FamilyTree {
             return false;
         }
     }
-//
-//
-//
+
+    public boolean setDivorce(long humanId1, long humanId2){
+        if(checkId(humanId1) && checkId(humanId2)){
+            Human human1 = getById(humanId1);
+            Human human2 = getById(humanId2);
+            return setDivorce(human1, human2);
+        }
+        return false;
+    }
+    public boolean setDivorce(Human human1, Human human2){
+        if(human1.getSpouse() == null && human2.getSpouse() == null){
+            human1.setSpouse(human2);
+            human2.setSpouse(human1);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean remove(long humansId){
+        if (checkId(humansId)){
+            Human human = getById(humansId);
+            return humanList.remove(human);
+        }
+        return false;
+    }
 
     private boolean checkId(long id){
         return id < humansId && id >= 0;
