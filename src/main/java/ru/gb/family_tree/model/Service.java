@@ -18,7 +18,7 @@ public class Service {
 
     public Service() {
         this.familyTree = new FamilyTree<>();
-//        this.idHuman = 0;
+        this.idHuman = 0;
     }
 
     // Добавление человека в семейное древо
@@ -55,8 +55,6 @@ public class Service {
         }
         return stringBuilder.toString();
     }
-
-
 
 
 //    // Установка брака между двумя людьми

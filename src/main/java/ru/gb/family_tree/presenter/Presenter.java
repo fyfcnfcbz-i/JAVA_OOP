@@ -12,8 +12,6 @@ public class Presenter {
 
     private View view;
     private Service service;
-    private final String filePath = "src/main/java/ru/gb/family_tree/writer/tree.txt";  // Путь к файлу для сохранения и загрузки
-
 
     public Presenter(View view) {
         this.view = view;
@@ -49,10 +47,6 @@ public class Presenter {
 
 
     }
-
-
-
-
 
 
 //    // Установка брака между двумя людьми
