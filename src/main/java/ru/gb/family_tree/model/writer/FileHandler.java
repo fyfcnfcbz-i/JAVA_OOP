@@ -1,4 +1,4 @@
-package ru.gb.family_tree.writer;
+package ru.gb.family_tree.model.writer;
 
 import java.io.*;
 
@@ -29,12 +29,6 @@ public class FileHandler implements Writer {
             return false;
         }
     }
-
-
-
-
-
-
 
 
 }

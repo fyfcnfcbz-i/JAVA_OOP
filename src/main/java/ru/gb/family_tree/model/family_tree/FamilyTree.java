@@ -1,6 +1,4 @@
-package ru.gb.family_tree.family_tree;
-
-import ru.gb.family_tree.human.Human;
+package ru.gb.family_tree.model.family_tree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -150,9 +148,10 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
     public void sortByName(){
         humanList.sort(new FamilyTreeComparatorByName<>());
     }
-    public void sortByBirthData(){
+    public void sortByBirthDate(){
         humanList.sort(new FamilyTreeComparatorByBirthDate<>());
     }
+
 
 
 }
