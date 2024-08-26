@@ -44,22 +44,41 @@ public class ConsoleUI implements View{
     public void addHuman() {
         System.out.println("Введите имя человека:");
         String name = scanner.nextLine();
+
         System.out.println("Укажите пол (Male/Female):");
-        String genderString = scanner.nextLine();
-        Gender gender = Gender.valueOf(genderString);
+        String genderString = scanner.nextLine().trim();
+        Gender gender;
+        try {
+            gender = Gender.valueOf(genderString);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Некорректный ввод пола. Попробуйте снова.");
+            return;
+        }
+
         System.out.println("Укажите дату рождения (yyyy-mm-dd):");
         String birthDateString = scanner.nextLine();
         LocalDate birthDate = LocalDate.parse(birthDateString);
+
         System.out.println("Укажите дату смерти (yyyy-mm-dd) (или оставьте пустым):");
         String deathDateString = scanner.nextLine();
-        LocalDate deathDate = LocalDate.parse(deathDateString);
+        LocalDate deathDate = deathDateString.isEmpty() ? null : LocalDate.parse(deathDateString);
+
+//        System.out.println("Введите имя отца (или оставьте пустым):");
+//        String fatherName = scanner.nextLine();
+//        Human father = fatherName.isEmpty() ? null : new Human(fatherName, gender, birthDate);
+//
+//        System.out.println("Введите имя матери (или оставьте пустым):");
+//        String motherName = scanner.nextLine();
+//        Human mother = motherName.isEmpty() ? null : new Human(motherName, gender, birthDate);
+
         System.out.println("Введите имя отца (или оставьте пустым):");
         String fatherName = scanner.nextLine();
-        Human father = fatherName.isEmpty() ? null : new Human(fatherName, gender, birthDate);
         System.out.println("Введите имя матери (или оставьте пустым):");
         String motherName = scanner.nextLine();
-        Human mother = motherName.isEmpty() ? null : new Human(motherName, gender, birthDate);
-        presenter.addHuman(name, gender, birthDate, deathDate, father, mother);
+
+//        presenter.addHuman(name, gender, birthDate, deathDate, father, mother);
+        presenter.addHuman(name, gender, birthDate, deathDate, fatherName, motherName);
+
     }
 
     public void sortByName() {
@@ -102,7 +121,7 @@ public class ConsoleUI implements View{
     }
 
     private boolean checkTextForInt(String text) {
-        if (text.matches("[0-9]+")) {
+        if (text.matches("\\d+")) {
             return true;
         } else {
             inputError();

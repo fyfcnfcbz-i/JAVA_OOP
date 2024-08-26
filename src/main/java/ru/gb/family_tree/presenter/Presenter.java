@@ -2,7 +2,6 @@ package ru.gb.family_tree.presenter;
 
 import ru.gb.family_tree.model.Service;
 import ru.gb.family_tree.model.human.Gender;
-import ru.gb.family_tree.model.human.Human;
 import ru.gb.family_tree.view.View;
 
 import java.time.LocalDate;
@@ -25,7 +24,7 @@ public class Presenter {
     }
 
     // Добавление человека в семейное древо
-    public void addHuman(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Human father, Human mother) {
+    public void addHuman(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, String father, String mother) {
         service.addHuman(name, gender, birthDate, deathDate, father, mother);
         view.printAnswer("Человек добавлен в семейное древо.");
         getHumansListInfo();
@@ -41,13 +40,7 @@ public class Presenter {
     public void sortByBirthDate() {
         service.sortByBirthDate();
         getHumansListInfo();
-
-
-
-
-
     }
-
 
 //    // Установка брака между двумя людьми
 //    public void setWedding(Long humanId1, Long humanId2) {

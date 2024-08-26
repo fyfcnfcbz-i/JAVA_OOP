@@ -153,5 +153,13 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
     }
 
 
-
+    public int getMaxId() {
+        int maxId = 0;
+        for (E human : humanList) {
+            if (human.getId() > maxId) {
+                maxId = (int) human.getId();
+            }
+        }
+        return maxId;
+    }
 }

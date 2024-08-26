@@ -26,7 +26,7 @@ public class FileHandler implements Writer {
             return objectInputStream.readObject();
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
