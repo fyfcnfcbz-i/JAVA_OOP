@@ -63,23 +63,57 @@ public class ConsoleUI implements View{
         String deathDateString = scanner.nextLine();
         LocalDate deathDate = deathDateString.isEmpty() ? null : LocalDate.parse(deathDateString);
 
-//        System.out.println("Введите имя отца (или оставьте пустым):");
-//        String fatherName = scanner.nextLine();
-//        Human father = fatherName.isEmpty() ? null : new Human(fatherName, gender, birthDate);
-//
-//        System.out.println("Введите имя матери (или оставьте пустым):");
-//        String motherName = scanner.nextLine();
-//        Human mother = motherName.isEmpty() ? null : new Human(motherName, gender, birthDate);
-
         System.out.println("Введите имя отца (или оставьте пустым):");
         String fatherName = scanner.nextLine();
+        Human father = fatherName.isEmpty() ? null : new Human(fatherName, gender, birthDate);
+
         System.out.println("Введите имя матери (или оставьте пустым):");
         String motherName = scanner.nextLine();
+        Human mother = motherName.isEmpty() ? null : new Human(motherName, gender, birthDate);
 
-//        presenter.addHuman(name, gender, birthDate, deathDate, father, mother);
-        presenter.addHuman(name, gender, birthDate, deathDate, fatherName, motherName);
+//        System.out.println("Введите имя отца (или оставьте пустым):");
+//        String fatherName = scanner.nextLine();
+//        System.out.println("Введите имя матери (или оставьте пустым):");
+//        String motherName = scanner.nextLine();
+
+        presenter.addHuman(name, gender, birthDate, deathDate, father, mother);
+//        presenter.addHuman(name, gender, birthDate, deathDate, fatherName, motherName);
 
     }
+
+    public void setWedding() {
+        System.out.println("Введите ID первого человека:");
+        long id1 = Long.parseLong(scanner.nextLine());
+        System.out.println("Введите ID второго человека:");
+        long id2 = Long.parseLong(scanner.nextLine());
+        presenter.setWedding(id1, id2);
+    }
+    public void setDivorce() {
+        System.out.println("Введите ID первого человека:");
+        long id1 = Long.parseLong(scanner.nextLine());
+        System.out.println("Введите ID второго человека:");
+        long id2 = Long.parseLong(scanner.nextLine());
+        presenter.setDivorce(id1, id2);
+    }
+
+    public void addParent() {
+        System.out.println("Введите ID ребенка:");
+        long childId = Long.parseLong(scanner.nextLine());
+        System.out.println("Введите ID родителя:");
+        long parentId = Long.parseLong(scanner.nextLine());
+        presenter.addParent(childId, parentId);
+    }
+
+    public void addChild() {
+        System.out.println("Введите ID родителя:");
+        long parentId = Long.parseLong(scanner.nextLine());
+        System.out.println("Введите ID ребенка:");
+        long childId = Long.parseLong(scanner.nextLine());
+        presenter.addChild(parentId, childId);
+    }
+
+
+
 
     public void sortByName() {
         presenter.sortByName();

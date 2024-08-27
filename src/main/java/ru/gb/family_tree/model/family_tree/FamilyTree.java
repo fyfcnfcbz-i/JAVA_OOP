@@ -33,16 +33,75 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
         }
         return false;
     }
-    private void addToParents(E human){
-        for (E parent: human.getParents()){
-            parent.addChild(human);
+//    private void addToParents(E human){
+//        for (E parent: human.getParents()){
+//            parent.addChild(human);
+//        }
+//    }
+//    private void addToChildren(E human){
+//        for (E child: human.getChildren()){
+//            child.addParent(human);
+//        }
+//    }
+
+    private void addToParents(E human) {
+        for (E parent : human.getParents()) {
+            if (!parent.getChildren().contains(human)) {
+                parent.addChild(human);
+            }
         }
     }
-    private void addToChildren(E human){
-        for (E child: human.getChildren()){
-            child.addParent(human);
+
+    private void addToChildren(E human) {
+        for (E child : human.getChildren()) {
+            if (!child.getParents().contains(human)) {
+                child.addParent(human);
+            }
         }
     }
+
+
+
+    public boolean addParent(long childId, long parentId) {
+        E child = getById(childId);
+        E parent = getById(parentId);
+        if (child != null && parent != null) {
+            return addParent(child, parent);
+        }
+        return false;
+    }
+    public boolean addParent(E child, E parent) {
+        if (child != null && parent != null) {
+            if (child.getParents().contains(parent)) {
+                return false; // Родитель уже добавлен
+            }
+            child.addParent(parent);
+            parent.addChild(child);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addChild(long parentId, long childId) {
+        E parent = getById(parentId);
+        E child = getById(childId);
+        if (parent != null && child != null) {
+            return addChild(parent, child);
+        }
+        return false;
+    }
+    public boolean addChild(E parent, E child) {
+        if (parent != null && child != null) {
+            if (parent.getChildren().contains(child)) {
+                return false; // Ребенок уже добавлен
+            }
+            parent.addChild(child);
+            child.addParent(parent);
+            return true;
+        }
+        return false;
+    }
+
 
     public List<E> getSiblings(int id) {
         E human = getById(id);
@@ -51,9 +110,9 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
         }
         List<E> res = new ArrayList<>();
         for(E parent: human.getParents()){
-            for(E child: human.getChildren()){
-                if(!child.equals(human)){
-                    res.add((child));
+            for(E sibling: human.getChildren()){
+                if(!sibling.equals(human)){
+                    res.add((sibling));
                 }
             }
         }
@@ -68,6 +127,7 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
         }
         return res;
     }
+
     public boolean setWedding(long humanId1, long humanId2){
         if(checkId(humanId1) && checkId(humanId2)){
             E human1 = getById(humanId1);
@@ -95,9 +155,9 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
         return false;
     }
     public boolean setDivorce(E human1, E human2){
-        if(human1.getSpouse() == null && human2.getSpouse() == null){
-            human1.setSpouse(human2);
-            human2.setSpouse(human1);
+        if(human1.getSpouse() == human2 && human2.getSpouse() == human1){
+            human1.setSpouse(null);
+            human2.setSpouse(null);
             return true;
         }else {
             return false;

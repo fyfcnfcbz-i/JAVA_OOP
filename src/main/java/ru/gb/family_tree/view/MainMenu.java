@@ -13,6 +13,13 @@ public class MainMenu {
         commandList = new ArrayList<>();
         commandList.add(new AddHuman(consoleUI));
         commandList.add(new GetHumansInfo(consoleUI));
+
+        commandList.add(new SetWedding(consoleUI));
+        commandList.add(new SetDivorce(consoleUI));
+
+        commandList.add(new AddParent(consoleUI));
+        commandList.add(new AddChild(consoleUI));
+
         commandList.add(new SortByName(consoleUI));
         commandList.add(new SortByBirthDate(consoleUI));
         commandList.add(new SaveTree(consoleUI));

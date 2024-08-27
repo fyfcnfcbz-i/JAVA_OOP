@@ -23,9 +23,9 @@ public class Service {
     }
 
     // Добавление человека в семейное древо
-    public void addHuman(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, String fatherName, String motherName) {
-        Human father = findHumanByName(fatherName);
-        Human mother = findHumanByName(motherName);
+    public void addHuman(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Human father, Human mother) {
+//        Human father = findHumanByName(fatherName);
+//        Human mother = findHumanByName(motherName);
 
         Human human = new Human(name, gender, birthDate, deathDate, father, mother);
         human.setId(idHuman++);
@@ -47,13 +47,13 @@ public class Service {
     }
 
     // Поиск человека по имени
-    private Human findHumanByName(String name) {
-        if (name == null || name.isEmpty()) {
-            return null;
-        }
-        List<Human> humans = familyTree.getByName(name);
-        return humans.isEmpty() ? null : humans.get(0); // Предполагаем, что имя уникально или берем первого найденного
-    }
+//    private Human findHumanByName(String name) {
+//        if (name == null || name.isEmpty()) {
+//            return null;
+//        }
+//        List<Human> humans = familyTree.getByName(name);
+//        return humans.isEmpty() ? null : humans.get(0); // Предполагаем, что имя уникально или берем первого найденного
+//    }
 
     // Сортировка по имени
     public void sortByName() {
@@ -86,6 +86,24 @@ public class Service {
 //            familyTree.setWedding(human1, human2);
 //        }
 //    }
+
+    // Установка брака между двумя людьми
+    public boolean setWedding(long humanId1, long humanId2) {
+        return familyTree.setWedding(humanId1, humanId2);
+    }
+    // Развод между двумя людьми
+    public boolean setDivorce(long humanId1, long humanId2) {
+        return familyTree.setDivorce(humanId1, humanId2);
+    }
+
+    public boolean addParent(long childId, long parentId) {
+        return familyTree.addParent(childId, parentId);
+    }
+    public boolean addChild(long parentId, long childId) {
+        return familyTree.addChild(parentId, childId);
+    }
+
+
 
 
     // Сохранение семейного древа
