@@ -49,8 +49,6 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
         }
     }
 
-
-
     public boolean addParent(long childId, long parentId) {
         E child = getById(childId);
         E parent = getById(parentId);
@@ -92,30 +90,30 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
     }
 
 
-    public List<E> getSiblings(int id) {
-        E human = getById(id);
-        if (human == null) {
-            return null;
-        }
-        List<E> res = new ArrayList<>();
-        for(E parent: human.getParents()){
-            for(E sibling: human.getChildren()){
-                if(!sibling.equals(human)){
-                    res.add((sibling));
-                }
-            }
-        }
-        return res;
-    }
-    public List<E> getByName(String name){
-        List<E> res = new ArrayList<>();
-        for (E human: humanList){
-            if(human.getName().equals(name)){
-                res.add(human);
-            }
-        }
-        return res;
-    }
+//    public List<E> getSiblings(int id) {
+//        E human = getById(id);
+//        if (human == null) {
+//            return null;
+//        }
+//        List<E> res = new ArrayList<>();
+//        for(E parent: human.getParents()){
+//            for(E sibling: human.getChildren()){
+//                if(!sibling.equals(human)){
+//                    res.add((sibling));
+//                }
+//            }
+//        }
+//        return res;
+//    }
+//    public List<E> getByName(String name){
+//        List<E> res = new ArrayList<>();
+//        for (E human: humanList){
+//            if(human.getName().equals(name)){
+//                res.add(human);
+//            }
+//        }
+//        return res;
+//    }
 
     public boolean setWedding(long humanId1, long humanId2){
         if(checkId(humanId1) && checkId(humanId2)){
@@ -153,13 +151,13 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
         }
     }
 
-    public boolean remove(long humansId){
-        if (checkId(humansId)){
-            E human = getById(humansId);
-            return humanList.remove(human);
-        }
-        return false;
-    }
+//    public boolean remove(long humansId){
+//        if (checkId(humansId)){
+//            E human = getById(humansId);
+//            return humanList.remove(human);
+//        }
+//        return false;
+//    }
 
     private boolean checkId(long id){
         return id < humansId && id >= 0;
@@ -194,6 +192,7 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
     public Iterator<E> iterator(){
         return new FamilyTreeIterator<>(humanList);
     }
+
     public void sortByName(){
         humanList.sort(new FamilyTreeComparatorByName<>());
     }

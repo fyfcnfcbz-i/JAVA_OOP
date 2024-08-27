@@ -71,13 +71,7 @@ public class ConsoleUI implements View{
         String motherName = scanner.nextLine();
         Human mother = motherName.isEmpty() ? null : new Human(motherName, gender, birthDate);
 
-//        System.out.println("Введите имя отца (или оставьте пустым):");
-//        String fatherName = scanner.nextLine();
-//        System.out.println("Введите имя матери (или оставьте пустым):");
-//        String motherName = scanner.nextLine();
-
         presenter.addHuman(name, gender, birthDate, deathDate, father, mother);
-//        presenter.addHuman(name, gender, birthDate, deathDate, fatherName, motherName);
 
     }
 

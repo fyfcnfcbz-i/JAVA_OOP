@@ -1,4 +1,4 @@
-package ru.gb.family_tree.model;
+package ru.gb.family_tree.model.service;
 
 
 import ru.gb.family_tree.model.family_tree.FamilyTree;
@@ -7,7 +7,6 @@ import ru.gb.family_tree.model.human.Human;
 import ru.gb.family_tree.model.writer.FileHandler;
 
 import java.time.LocalDate;
-import java.util.List;
 
 
 public class Service {
@@ -24,8 +23,6 @@ public class Service {
 
     // Добавление человека в семейное древо
     public void addHuman(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Human father, Human mother) {
-//        Human father = findHumanByName(fatherName);
-//        Human mother = findHumanByName(motherName);
 
         Human human = new Human(name, gender, birthDate, deathDate, father, mother);
         human.setId(idHuman++);
@@ -89,9 +86,7 @@ public class Service {
     }
 
 
-
-
-    // Сохранение семейного древа
+//     Сохранение семейного древа
     public void saveTree() {
         FileHandler fileHandler = new FileHandler(filePath);
         try {
