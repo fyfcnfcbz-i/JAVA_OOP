@@ -43,12 +43,6 @@ public class Presenter {
         getHumansListInfo();
     }
 
-//    // Установка брака между двумя людьми
-//    public void setWedding(Long humanId1, Long humanId2) {
-//        service.setWedding(humanId1, humanId2);
-//        view.printAnswer("Брак установлен.");
-//        getHumansListInfo();
-//    }
 
     // Установка брака между двумя людьми
     public void setWedding(long humanId1, long humanId2) {
