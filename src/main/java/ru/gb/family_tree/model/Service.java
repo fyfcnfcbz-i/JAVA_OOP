@@ -46,14 +46,7 @@ public class Service {
         addHuman(name, gender, birthDate, deathDate, null, null);
     }
 
-    // Поиск человека по имени
-//    private Human findHumanByName(String name) {
-//        if (name == null || name.isEmpty()) {
-//            return null;
-//        }
-//        List<Human> humans = familyTree.getByName(name);
-//        return humans.isEmpty() ? null : humans.get(0); // Предполагаем, что имя уникально или берем первого найденного
-//    }
+
 
     // Сортировка по имени
     public void sortByName() {
@@ -78,14 +71,6 @@ public class Service {
     }
 
 
-//    // Установка брака между двумя людьми
-//    public void setWedding(long humanId1, long humanId2) {
-//        Human human1 = familyTree.getById(humanId1);
-//        Human human2 = familyTree.getById(humanId2);
-//        if (human1 != null && human2 != null) {
-//            familyTree.setWedding(human1, human2);
-//        }
-//    }
 
     // Установка брака между двумя людьми
     public boolean setWedding(long humanId1, long humanId2) {

@@ -33,16 +33,6 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
         }
         return false;
     }
-//    private void addToParents(E human){
-//        for (E parent: human.getParents()){
-//            parent.addChild(human);
-//        }
-//    }
-//    private void addToChildren(E human){
-//        for (E child: human.getChildren()){
-//            child.addParent(human);
-//        }
-//    }
 
     private void addToParents(E human) {
         for (E parent : human.getParents()) {
@@ -51,7 +41,6 @@ public class FamilyTree <E extends TreeNode<E>> implements Serializable, Iterabl
             }
         }
     }
-
     private void addToChildren(E human) {
         for (E child : human.getChildren()) {
             if (!child.getParents().contains(human)) {
