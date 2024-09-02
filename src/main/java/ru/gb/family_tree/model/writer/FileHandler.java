@@ -29,6 +29,4 @@ public class FileHandler implements Writer {
             return null;
         }
     }
-
-
 }

@@ -5,6 +5,7 @@ import ru.gb.family_tree.model.family_tree.FamilyTree;
 import ru.gb.family_tree.model.human.Gender;
 import ru.gb.family_tree.model.human.Human;
 import ru.gb.family_tree.model.writer.FileHandler;
+import ru.gb.family_tree.model.writer.Writer;
 
 import java.time.LocalDate;
 
@@ -13,12 +14,13 @@ public class Service {
 
     private int idHuman;
     private FamilyTree<Human> familyTree;
-    private final static String filePath = "src/main/resources/tree.txt";
-
+//    private final static String filePath = "src/main/resources/tree.txt";
+    private Writer writer;
 
     public Service() {
         this.familyTree = new FamilyTree<>();
         this.idHuman = 0;
+        this.writer = writer;
     }
 
     // Добавление человека в семейное древо
@@ -88,9 +90,10 @@ public class Service {
 
 //     Сохранение семейного древа
     public void saveTree() {
-        FileHandler fileHandler = new FileHandler(filePath);
+//        FileHandler fileHandler = new FileHandler(filePath);
         try {
-            fileHandler.save(familyTree);
+//            fileHandler.save(familyTree);
+            writer.save(familyTree);
             System.out.println("Древо успешно сохранено.");
         } catch (Exception e) {
             System.out.println("Ошибка при сохранении древа: " + e.getMessage());
@@ -100,8 +103,9 @@ public class Service {
 
     // Загрузка семейного древа
     public void loadTree() {
-        FileHandler fileHandler = new FileHandler(filePath);
-        FamilyTree<Human> loadedTree = (FamilyTree<Human>) fileHandler.read();
+//        FileHandler fileHandler = new FileHandler(filePath);
+//        FamilyTree<Human> loadedTree = (FamilyTree<Human>) fileHandler.read();
+        FamilyTree<Human> loadedTree = (FamilyTree<Human>) writer.read();
         if (loadedTree != null) {
             this.familyTree = loadedTree;
             this.idHuman = familyTree.getMaxId() + 1;  // Устанавливаем idHuman как максимальный существующий ID + 1

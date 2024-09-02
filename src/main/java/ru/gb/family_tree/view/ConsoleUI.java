@@ -2,6 +2,9 @@ package ru.gb.family_tree.view;
 
 import ru.gb.family_tree.model.human.Gender;
 import ru.gb.family_tree.model.human.Human;
+import ru.gb.family_tree.model.service.Service;
+import ru.gb.family_tree.model.writer.FileHandler;
+import ru.gb.family_tree.model.writer.Writer;
 import ru.gb.family_tree.presenter.Presenter;
 
 import java.time.LocalDate;
@@ -16,11 +19,17 @@ public class ConsoleUI implements View{
     private boolean work;
     private MainMenu menu;
 
+
+
+
+
     public ConsoleUI() {
-        scanner = new Scanner(System.in);
+
         presenter = new Presenter(this);
+        scanner = new Scanner(System.in);
         work = true;
         menu = new MainMenu(this);
+
     }
 
     @Override
@@ -42,6 +51,7 @@ public class ConsoleUI implements View{
     }
 
     public void addHuman() {
+
         System.out.println("Введите имя человека:");
         String name = scanner.nextLine();
 
@@ -105,7 +115,6 @@ public class ConsoleUI implements View{
         long childId = Long.parseLong(scanner.nextLine());
         presenter.addChild(parentId, childId);
     }
-
 
 
 
